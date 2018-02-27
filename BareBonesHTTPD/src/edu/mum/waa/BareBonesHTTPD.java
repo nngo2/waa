@@ -78,7 +78,7 @@ public class BareBonesHTTPD extends Thread {
 	
 	private BBHttpResponse processDotWebRequest(BBHttpRequest httpRequest, BBHttpResponse httpResponse) {
 		//DotWebResponse resp = new DotWebResponse(httpRequest, httpResponse);
-		String configClass = configs.getConfig(AppSetting.DOT_WEB_CLASS_CONFIG, AppSetting.DOT_WEB_CLASS_CONFIG_DEFAULT);
+		String configClass = configs.getConfig(httpRequest.getUri().substring(1));
 		DotWebResponse resp;
 		try {
 			Class c = Class.forName(configClass);
@@ -93,8 +93,8 @@ public class BareBonesHTTPD extends Thread {
 	
 	private boolean isDotWebRequests(String uri) {
 		//if (uri.equalsIgnoreCase("/welcome.web") || uri.equalsIgnoreCase("/contacts.web")) {
-		String configUri = configs.getConfig(AppSetting.DOT_WEB_URI_CONFIG, AppSetting.DOT_WEB_URI_CONFIG_DEFAULT);
-		if (configUri.indexOf(uri) >= 0) {
+		String configUri = configs.getConfig(uri.substring(1));
+		if (configUri != null) {
 			return true;
 		}
 		return false;
