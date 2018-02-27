@@ -11,7 +11,7 @@ public class BareBonesHTTPD extends Thread {
 
 	private static final int PortNumber = 8080;
 	
-	private static final String RootDoc = "C:\\Project\\Mum\\Waa\\Demos\\BareBonesHTTPD\\docs";
+	private static final String RootDoc = "D:\\GitRepo\\Waa\\BareBonesHTTPD\\docs";
 	
 	private AppSetting configs;
 
@@ -32,12 +32,13 @@ public class BareBonesHTTPD extends Thread {
 			if (httpRequest != null) {
 				BBHttpResponse httpResponse = new BBHttpResponse();
 				
-				if (isDotWebRequests(httpRequest.getUri())) {
+				if ("/".equals(httpRequest.getUri())) { // default code, print out request for the home page
+					processRequest(httpRequest, httpResponse);
+				} else if (isDotWebRequests(httpRequest.getUri())) {
 					httpResponse = processDotWebRequest(httpRequest, httpResponse);
 				} else if (isStaticFile(httpRequest.getUri())) {
 					processFileRequest(httpRequest, httpResponse);
 				} else {
-					//processRequest(httpRequest, httpResponse);
 					processError(404, "File Not Found", httpResponse);
 				}
 				
