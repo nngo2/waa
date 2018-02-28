@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Calculator Example</title>
+</head>
+<body>
+	<section>
+	<form method="post" action="http://localhost:8080/lab2/calc"/>
+		<fieldset>
+			<legend>Example Calculator</legend>
+			<div>
+				<input name="add1" type="number" value="add1Val" required /> 
+				<span> + </span> 
+				<input name="add2" type="number" value="add2Val" required/> 
+				<span> = </span> 
+				<input name="addresult" type="number" value="addResultVal" />
+			</div>
+			<div>
+				<input name="mul1" type="number" value="mul1Val" required/> 
+				<span> + </span> 
+				<input name="mul2" type="number" value="mul2Val" required/> 
+				<span> = </span> 
+				<input name="multresult" type="number" value="mulResultVal"/>
+			</div>
+			<div>
+				<input name="submit" type="submit" value="  Submit  "/>
+			</div>
+		</fieldset>
+	</form>
+	</section>
+</body>
+</html>
