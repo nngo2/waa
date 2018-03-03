@@ -7,6 +7,9 @@
 <title>Books currently in the shop</title>
 </head>
 <body>
+	<div>
+		<a href="<c:url value="/logout" />">Logout</a>
+	</div>
 	<h1>Books currently in the shop</h1>
 	<table>
 	<c:forEach var="book" items="${books}">

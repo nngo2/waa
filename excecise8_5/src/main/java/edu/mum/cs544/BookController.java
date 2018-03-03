@@ -22,7 +22,12 @@ public class BookController {
 	
 	@RequestMapping("/")
 	public String redirectRoot() {
-		return "redirect:/books";
+		return "redirect:/index";
+	}
+	
+	@RequestMapping("/index")
+	public String redirectIndex() {
+		return "index";
 	}
 	
 	@RequestMapping(value="/books", method=RequestMethod.GET)
@@ -31,7 +36,7 @@ public class BookController {
 		return "bookList";
 	}
 	
-	@RequestMapping(value="/addBook", method=RequestMethod.GET)
+	@RequestMapping(value="addBook", method=RequestMethod.GET)
 	public String addBook(@ModelAttribute("book") Book book) {
 		return "addBook";
 	}
