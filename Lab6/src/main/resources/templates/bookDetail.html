@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Edit a Book</title>
+	<link rel="stylesheet" th:href="@{/resources/style.css}" />
+</head>
+<body>
+	<form th:object="${book}" th:action="@{../books/{id}(id=${book.id})}" method="post">
+		<ul class="errorBlock" th:if="${#fields.hasAnyErrors()}">
+		  <li th:each="err : ${#fields.allErrors()}" th:text="${err}">...</li>
+		</ul>
+		<table>
+			<tr>
+				<td>Title:</td>
+				<td><input name="title" type="text" th:field="*{title}"/></td>
+				<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+					th:errorClass="error">Error</td>
+			</tr>
+			<tr>
+				<td>ISBN:</td>
+				<td><input name="title" type="text" th:field="*{ISBN}"/></td>
+				<td th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}"
+					th:errorClass="error">Error</td>
+			</tr>
+			<tr>
+				<td>Published Date:</td>
+				<td><input name="publishedDate" type="date" th:field="*{publishedDate}"/></td>
+				<td th:if="${#fields.hasErrors('publishedDate')}" th:errors="*{publishedDate}"
+					th:errorClass="error">Error</td>
+			</tr>			
+			<tr>
+				<td>Author:</td>
+				<td><input name="author" type="text" th:field="*{author}"/></td>
+				<td th:if="${#fields.hasErrors('author')}" th:errors="*{author}"
+					th:errorClass="error">Error</td>
+			</tr>
+			<tr>
+				<td>Price:</td>
+				<td><input name="price" type="number" th:field="*{price}"/></td>
+				<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+					th:errorClass="error">Error</td>
+			</tr>
+		</table>
+		<input type="submit" value="Update" />
+	</form>
+	<form th:action="@{delete?bookId={id}(id=${book.id})}" method="post">
+		<button type="submit">Delete</button>
+	</form>
+</body>
+</html>

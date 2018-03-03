@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" th:href="@{/resources/style.css}" />
+<title>Add a Car</title>
+</head>
+<body>
+	<form th:object="${car}" th:action="@{../cars/{id}(id=${car.id})}" method="post">
+		<ul class="errorBlock" th:if="${#fields.hasAnyErrors()}">
+		  <li th:each="err : ${#fields.allErrors()}" th:text="${err}">...</li>
+		</ul>
+		<table>
+			<tr>
+				<td>Make:</td>
+				<td><input type="text" name="make" th:field="${car.make}" /></td>
+				<td th:if="${#fields.hasErrors('make')}" th:errors="*{make}"
+					th:errorClass="error">Field is required</td>
+			</tr>
+			<tr>
+				<td>Model:</td>
+				<td><input type="text" name="model" th:field="${car.model}" /></td>
+				<td th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+					th:errorClass="error">Field is required</td>				
+			</tr>
+			<tr>
+				<td>Year:</td>
+				<td><input type="number" name="year" th:field="${car.year}" /></td>
+				<td th:if="${#fields.hasErrors('year')}" th:errors="*{year}"
+					th:errorClass="error">Year must be between 1999-2018</td>				
+			</tr>
+			<tr>
+				<td>Color:</td>
+				<td><input type="text" name="color" th:field="${car.color}" /></td>
+				<td th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
+					th:errorClass="error">Field is required</td>				
+			</tr>
+		</table>
+		<input type="submit" value="Update" />
+	</form>
+	<form th:action="@{delete?carId={id}(id=${car.id})}" method="post">
+		<button type="submit">Delete</button>
+	</form>
+</body>
+</html>

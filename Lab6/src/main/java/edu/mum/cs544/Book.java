@@ -3,6 +3,7 @@ package edu.mum.cs544;
 import java.time.LocalDate;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -12,13 +13,13 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class Book {
 	private int id;
 	
-	@NotNull
+	@NotBlank
 	private String title;
 	
 	@Pattern(regexp="\\d{3}-\\d{10}")
 	private String ISBN;
 	
-	@NotNull
+	@NotBlank
 	private String author;
 	
 	@NotNull

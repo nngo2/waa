@@ -13,8 +13,8 @@ public class CarDao implements ICarDao {
 	private Map<Integer, Car> cars = new HashMap<>();
 	
 	public CarDao() {
-		add(new Car("Volvo", "S80", 1999, "Silver"));
-		add(new Car("Honda", "Accord", 1997, "Red"));
+		add(new Car(1, "Volvo", "S80", 1999, "Silver"));
+		add(new Car(2, "Honda", "Accord", 1997, "Red"));
 	}
 	
 	@Override

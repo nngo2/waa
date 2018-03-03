@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Cars currently in the shop</title>
+</head>
+<body>
+	<div>
+		<a th:href="@{/logout}">Logout</a>
+	</div>
+	<h1>Cars currently in the shop</h1>
+	<!-- 
+	<table>
+		<tr th:each="var : ${#vars.getVariableNames()}">
+            <td th:text="${var}"></td>
+            <td th:text="${#vars.getVariable(var)}"></td>
+        </tr>
+	</table>
+ 	-->
+	<table th:object="${cars}">
+		<tr th:each="car : ${cars}">
+			<td th:text="${car.make}">Make</td>
+			<td th:text="${car.model}">Model</td>
+			<td th:text="${car.year}"></td>
+			<td th:text="${car.color}">Color</td>
+			<td><a th:href="@{../cars/{id}(id=${car.id})}">edit</a></td>
+		</tr>
+	</table>
+
+	<a th:href="@{addCar}"> Add a Car</a>
+</body>
+</html>

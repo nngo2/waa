@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.themyleaf.org">
+<head>
+	<title>Login Page</title>
+	<style type="text/css">
+		.errorblock {
+			color: #ff0000;
+			background-color: #ffEEEE;
+			border: 3px solid #ff0000;
+			padding: 8px;
+			margin: 16px;
+		}
+	</style>
+</head>
+
+<body onload='document.f.j_username.focus();'>
+	<h3>My Sample Login</h3>
+
+	<div class="errorblock" th:if="${error}">
+		Your login was unsuccessful. <br/>
+		Caused: <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+	</div>
+
+	<form th:action="@{j_spring_security_check}" name="f" method="post">
+		<table>
+			<tr> 
+				<td>User:</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="submit" name="Submit" value="Submit"> <input type="reset" name="reset" ></td>
+			</tr>	
+		</table>
+	</form>
+</body>
+
+</html>

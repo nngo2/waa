@@ -1,17 +1,32 @@
 package edu.mum.cs544;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
+
 public class Car {
 	private int id;
+	
+	@NotBlank
 	private String make;
+
+	@NotBlank
 	private String model;
+	
+	@Range(min=1999, max=2018, message="Must be between 1999-2018")
 	private int year;
+	
+	@NotBlank
 	private String color;
 	
 	public Car() {
+		super();
 	}
 
-	public Car(String make, String model, int year, String color) {
+	public Car(int id, String make, String model, int year, String color) {
 		super();
+		this.id = id;
 		this.make = make;
 		this.model = model;
 		this.year = year;

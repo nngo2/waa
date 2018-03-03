@@ -1,10 +1,15 @@
 package edu.mum.cs544;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,14 +28,18 @@ public class CarController {
 	}
 	
 	@RequestMapping(value="addCar", method=RequestMethod.GET)
-	public String addCar(Model model) {
+	public String addCar(@ModelAttribute("car") Car car) {
 		return "addCar";
 	}
 	
 	@RequestMapping(value="/cars", method=RequestMethod.POST)
-	public String add(Car car) {
-		carDao.add(car);
-		return "redirect:/cars";
+	public String add(@Valid Car car, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "addCar";
+		} else {
+			carDao.add(car);
+			return "redirect:/cars";
+		}
 	}
 
 	@RequestMapping(value="/cars/{id}", method=RequestMethod.GET)
@@ -40,9 +49,13 @@ public class CarController {
 	}
 	
 	@RequestMapping(value="/cars/{id}", method=RequestMethod.POST)
-	public String update(Car car, @PathVariable int id) {
-		carDao.update(id, car); // car.id already set by binding
-		return "redirect:/cars";
+	public String update(@PathVariable int id, @Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "carDetail";
+		} else {
+			carDao.update(id, car); // car.id already set by binding
+			return "redirect:/cars";			
+		}
 	}
 	
 	@RequestMapping(value="/cars/delete", method=RequestMethod.POST)
