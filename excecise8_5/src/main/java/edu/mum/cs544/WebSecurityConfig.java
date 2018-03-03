@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 		.formLogin()
 			.loginPage("/login").failureUrl("/loginFailed").permitAll()
-			.loginProcessingUrl("/j_spring_security_check").passwordParameter("j_password").usernameParameter("j_username")
+			.loginProcessingUrl("/j_spring_security_check")
 			.and()
 		.logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()

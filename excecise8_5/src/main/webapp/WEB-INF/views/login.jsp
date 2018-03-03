@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 	<title>Fitness Tracker Custom Login Page</title>
@@ -27,21 +27,18 @@
 		<table>
 			<tr> 
 				<td>User:</td>
-				<td><input type="text" name="j_username" value=""></td>
+				<td><input type="text" name="username" value=""></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><input type="password" name="j_password" ></td>
+				<td><input type="password" name="password" ></td>
 			</tr>
 			<tr>
-				<td width="30%"><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/></td>
+				<td width="30%"><sec:csrfInput/></td>
 				<td align="center"><input type="submit" name="Submit" value="Submit"> <input type="reset" name="reset" ></td>
 			</tr>	
 		</table>
-		
-	
 	</form>
 </body>
-
 
 </html>
