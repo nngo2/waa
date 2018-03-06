@@ -5,9 +5,10 @@ import edu.mum.cs544.model.MatchDto;
 import edu.mum.cs544.model.TournamentMatch;
 
 public interface MatchService {
+	MatchDto getTournamentMatch(long id);
 	Iterable<TournamentMatch> getAllTournamentMatches();
-	void addTournamentMatch(TournamentMatch match);
+	void addTournamentMatch(MatchDto match);
+	void updateTournamentMatch(long id, MatchDto match);
 	Iterable<FriendlyMatch> getAllFriendlyMatches();
-	void addFriendlyMatch(FriendlyMatch match);
-	void addMatch(MatchDto match);
+	void addFriendlyMatch(MatchDto match);
 }

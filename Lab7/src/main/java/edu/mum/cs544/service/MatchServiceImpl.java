@@ -9,6 +9,7 @@ import edu.mum.cs544.dao.FriendlyMatchRepository;
 import edu.mum.cs544.dao.StadiumRepository;
 import edu.mum.cs544.dao.TeamRepository;
 import edu.mum.cs544.dao.TournamentMatchRepository;
+import edu.mum.cs544.model.AwardType;
 import edu.mum.cs544.model.FriendlyMatch;
 import edu.mum.cs544.model.MatchDto;
 import edu.mum.cs544.model.Stadium;
@@ -29,7 +30,6 @@ public class MatchServiceImpl implements MatchService {
 	@Autowired 
 	private StadiumRepository stadiumRepository;
 		
-	
 	public MatchServiceImpl() {
 		super();
 	}
@@ -68,18 +68,7 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	@Override
-	public void addTournamentMatch(TournamentMatch match) {
-		tournamentMatchRepository.save(match);
-		
-	}
-
-	@Override
-	public void addFriendlyMatch(FriendlyMatch match) {
-		friendlyMatchRepository.save(match);
-	}
-
-	@Override
-	public void addMatch(MatchDto match) {
+	public void addTournamentMatch(MatchDto match) {
 		Optional<Stadium> stadium = stadiumRepository.findById(match.getStadiumId());
 		Optional<Team> vTeam = teamRepository.findById(match.getVisitorTeamId());
 		Optional<Team> hTeam = teamRepository.findById(match.getHomeTeamId());
@@ -98,4 +87,72 @@ public class MatchServiceImpl implements MatchService {
 		tournamentMatchRepository.save(tMatch);
 	}
 
+	@Override
+	public void addFriendlyMatch(MatchDto match) {
+		Optional<Stadium> stadium = stadiumRepository.findById(match.getStadiumId());
+		Optional<Team> vTeam = teamRepository.findById(match.getVisitorTeamId());
+		Optional<Team> hTeam = teamRepository.findById(match.getHomeTeamId());
+		
+		FriendlyMatch tMatch = new FriendlyMatch(
+				match.getDate(),
+				match.getStartTime(),
+				stadium.get(),
+				match.getHomeScore(),
+				match.getVisitorScore(),
+				vTeam.get(),
+				hTeam.get(),
+				AwardType.valueOf(match.getAwardId()));
+		
+		friendlyMatchRepository.save(tMatch);
+	}
+
+	@Override
+	public MatchDto getTournamentMatch(long id) {
+		Optional<TournamentMatch> match = tournamentMatchRepository.findById(id);
+		if (!match.isPresent()) {
+			return null;
+		}
+		
+		TournamentMatch rMatch = match.get();
+		MatchDto dto = new MatchDto(
+				rMatch.getMatchKey(),
+				rMatch.getDate(),
+				rMatch.getStartTime(),
+				rMatch.getStadium().getStadiumKey(),
+				rMatch.getHomePoints(),
+				rMatch.getVisitorScore(),
+				rMatch.getHomeTeam().getTeamKey(),
+				rMatch.getVisitorTeam().getTeamKey(),
+				rMatch.getHomePoints(),
+				rMatch.getVisitorPoints()
+			);
+		
+		return dto;
+	}
+
+	@Override
+	public void updateTournamentMatch(long id, MatchDto match) {
+		Optional<TournamentMatch> oMatch = tournamentMatchRepository.findById(id);
+		if (!oMatch.isPresent()) {
+			return;
+		}
+		
+		TournamentMatch uMatch = oMatch.get();
+		
+		Stadium stadium = stadiumRepository.findById(match.getStadiumId()).get();
+		Team vTeam = teamRepository.findById(match.getVisitorTeamId()).get();
+		Team hTeam = teamRepository.findById(match.getHomeTeamId()).get();
+		
+		uMatch.setDate(match.getDate());
+		uMatch.setHomePoints(match.getHomePoints());
+		uMatch.setHomeScore(match.getHomeScore());
+		uMatch.setHomeTeam(hTeam);
+		uMatch.setStadium(stadium);
+		uMatch.setStartTime(match.getStartTime());
+		uMatch.setVisitorPoints(match.getVisitorPoints());
+		uMatch.setVisitorScore(match.getVisitorScore());
+		uMatch.setVisitorTeam(vTeam);
+		
+		tournamentMatchRepository.save(uMatch);
+	}
 }

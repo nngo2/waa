@@ -3,6 +3,7 @@ package edu.mum.cs544.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,9 +24,11 @@ public class MatchDto {
 	private int stadiumId;
 	
 	@NotNull
+	@Min(value=0)
 	private int homeScore;
 	
 	@NotNull
+	@Min(value=0)
 	private int visitorScore;
 	
 	@NotNull
@@ -34,8 +37,13 @@ public class MatchDto {
 	@NotNull
 	private int homeTeamId;
 
+	@Min(value=0)
 	private int homePoints;
+
+	@Min(value=0)
 	private int visitorPoints;
+	
+	private int awardId;
 	
 	public MatchDto() {
 		super();
@@ -54,6 +62,12 @@ public class MatchDto {
 		this.homeTeamId = homeTeamId;
 		this.homePoints = homePoints;
 		this.visitorPoints = visitorPoints;
+	}
+	
+	public MatchDto(long id, LocalDate date, LocalTime startTime, int stadiumId, int homeScore, int visitorScore,
+			int visitorTeamId, int homeTeamId, int homePoints, int visitorPoints, int awardId) {
+		this(id, date, startTime, stadiumId, homeScore, visitorScore, visitorTeamId, homeTeamId, homePoints, visitorPoints);
+		this.awardId = awardId;
 	}
 	
 	public long getId() {
@@ -120,5 +134,12 @@ public class MatchDto {
 	public void setVisitorPoints(int visitorPoints) {
 		this.visitorPoints = visitorPoints;
 	}
-	
+
+	public int getAwardId() {
+		return awardId;
+	}
+
+	public void setAwardId(int awardId) {
+		this.awardId = awardId;
+	}
 }

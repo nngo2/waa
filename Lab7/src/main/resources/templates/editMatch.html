@@ -6,7 +6,7 @@
 	<link rel="stylesheet" th:href="@{../css/style.css}" />
 </head>
 <body>
-	<form th:object="${matchDto}" th:action="@{matches}" method="post">
+	<form th:object="${matchDto}" th:action="@{../matches/{id}(id=${matchDto.id})}" method="post">
 		<ul class="errorBlock" th:if="${#fields.hasAnyErrors()}" >
 		  <li th:each="err : ${#fields.allErrors()}" th:text="${err}">...</li>
 		</ul>
@@ -15,7 +15,7 @@
 				<td>Stadium:</td>
 				<td th:object="${stadiumList}">
 					<select name="stadiumId" type="select">
-						<option th:each="s : ${stadiumList}" th:value="${s.stadiumKey}" th:text="${s.name}"></option>
+						<option th:each="s : ${stadiumList}" th:value="${s.stadiumKey}" th:text="${s.name}" th:selected="${s.stadiumKey == matchDto.stadiumId}"></option>
 					</select>
 				</td>
 				<td th:if="${#fields.hasErrors('stadiumId')}" th:errors="*{stadiumId}"
@@ -37,7 +37,7 @@
 				<td>Home Team:</td>
 				<td th:object="${teamList}">
 					<select name="homeTeamId" type="select">
-						<option th:each="s : ${teamList}" th:value="${s.teamKey}" th:text="${s.name}"></option>
+						<option th:each="s : ${teamList}" th:value="${s.teamKey}" th:text="${s.name}" th:selected="${s.teamKey == matchDto.homeTeamId}"></option>
 					</select>
 				</td>
 				<td th:if="${#fields.hasErrors('homeTeamId')}" th:errors="*{homeTeamId}"
@@ -59,7 +59,7 @@
 				<td>Visitor Team:</td>
 				<td th:object="${teamList}">
 					<select name="visitorTeamId" type="select">
-						<option th:each="s : ${teamList}" th:value="${s.teamKey}" th:text="${s.name}"></option>
+						<option th:each="s : ${teamList}" th:value="${s.teamKey}" th:text="${s.name}" th:selected="${s.teamKey == matchDto.visitorTeamId}"></option>
 					</select>
 				</td>
 				<td th:if="${#fields.hasErrors('visitorTeamId')}" th:errors="*{visitorTeamId}"

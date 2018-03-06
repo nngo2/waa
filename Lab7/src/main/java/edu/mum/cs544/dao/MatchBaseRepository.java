@@ -6,5 +6,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 import edu.mum.cs544.model.Match;
 
 @NoRepositoryBean
-public interface MatchBaseRepository<T extends Match> extends CrudRepository<T, Integer>{
+public interface MatchBaseRepository<T extends Match> extends CrudRepository<T, Long>{
 }
