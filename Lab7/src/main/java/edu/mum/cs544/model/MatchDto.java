@@ -3,7 +3,6 @@ package edu.mum.cs544.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,19 +19,19 @@ public class MatchDto {
 	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime startTime;
 	
-	@NotBlank
+	@NotNull
 	private int stadiumId;
 	
-	@NotBlank
+	@NotNull
 	private int homeScore;
 	
-	@NotBlank
+	@NotNull
 	private int visitorScore;
 	
-	@NotBlank
+	@NotNull
 	private int visitorTeamId;
 	
-	@NotBlank
+	@NotNull
 	private int homeTeamId;
 
 	private int homePoints;

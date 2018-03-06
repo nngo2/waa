@@ -1,7 +1,5 @@
 package edu.mum.cs544.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +11,9 @@ public class Team {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int teamKey;
 	
+	@NameFormat
 	private String name;
+	
 	private String city;
 	private String mascot;
 	//private List<Player> players;

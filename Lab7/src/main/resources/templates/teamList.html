@@ -8,7 +8,7 @@
 	<h1>Available Teams</h1>
 	<table th:object="${teams}">
 		<tr th:each="team : ${teams}">
-			<td th:text="${team.name}">name</td>
+			<td th:text="${{team.name}}">name</td>
 			<td th:text="${team.city}">city</td>
 			<td th:text="${team.mascot}">mascot</td>
 			<td th:text="${team.homeUniform}">homeUniform</td>

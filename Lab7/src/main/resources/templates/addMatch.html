@@ -6,7 +6,7 @@
 	<link rel="stylesheet" th:href="@{css/style.css}" />
 </head>
 <body>
-	<form th:object="${matchdto}" th:action="@{matches}" method="post">
+	<form th:object="${matchDto}" th:action="@{matches}" method="post">
 		<ul class="errorBlock" th:if="${#fields.hasAnyErrors()}" >
 		  <li th:each="err : ${#fields.allErrors()}" th:text="${err}">...</li>
 		</ul>

@@ -40,20 +40,22 @@ public class MatchController {
 		return "matchList";
 	}
 	
-	@RequestMapping(value="addMatch", method=RequestMethod.GET)
-	public String addMatch(@ModelAttribute("matchdto") MatchDto match, Model model) {
+	@RequestMapping(value= {"/addMatch", "addMatch"}, method=RequestMethod.GET)
+	public String addMatch(@ModelAttribute("matchDto") MatchDto match, Model model) {
 		model.addAttribute("stadiumList", stadiumService.getAllStadiums());
 		model.addAttribute("teamList", teamService.getAllTeams());
 		return "addMatch";
 	}
 	
 	@RequestMapping(value="/matches", method=RequestMethod.POST)
-	public String add(@ModelAttribute("matchdto") MatchDto match, BindingResult bindingResult) {
-		//if (bindingResult.hasErrors()) {
-		//	return "addMatch";
-		//} else {
+	public String add(@Valid @ModelAttribute("matchDto") MatchDto match, Model model, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("stadiumList", stadiumService.getAllStadiums());
+			model.addAttribute("teamList", teamService.getAllTeams());			
+			return "/addMatch";
+		} else {
 			matchService.addMatch(match);
 			return "redirect:/matches?matchtype=TM";			
-		//}
+		}
 	}
 }

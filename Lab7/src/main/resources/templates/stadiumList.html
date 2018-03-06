@@ -8,7 +8,7 @@
 	<h1>Available Stadiums</h1>
 	<table th:object="${stadiums}">
 		<tr th:each="stadium : ${stadiums}">
-			<td th:text="${stadium.name}">name</td>
+			<td th:text="${{stadium.name}}">name</td>
 			<td th:text="${stadium.city}">city</td>
 			<td th:text="${stadium.state}">state</td>
 			<td><a th:href="@{stadiums/{id}(id=${stadium.stadiumKey})}">edit (Not implemented yet)</a></td>

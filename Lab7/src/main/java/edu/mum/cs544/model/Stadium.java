@@ -16,7 +16,9 @@ public class Stadium {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int stadiumKey;
 	
+	@NameFormat
 	private String name;
+	
 	private String city;
 	
 	@Column(name="state")
