@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Add a Match</title>
+	<link rel="stylesheet" th:href="@{css/style.css}" />
+</head>
+<body>
+	<form th:object="${matchdto}" th:action="@{matches}" method="post">
+		<ul class="errorBlock" th:if="${#fields.hasAnyErrors()}" >
+		  <li th:each="err : ${#fields.allErrors()}" th:text="${err}">...</li>
+		</ul>
+		<table>
+			<tr>
+				<td>Stadium:</td>
+				<td th:object="${stadiumList}">
+					<select name="stadiumId" type="select">
+						<option th:each="s : ${stadiumList}" th:value="${s.stadiumKey}" th:text="${s.name}"></option>
+					</select>
+				</td>
+				<td th:if="${#fields.hasErrors('stadiumId')}" th:errors="*{stadiumId}"
+					th:errorClass="error">Error</td>
+			</tr>		
+			<tr>
+				<td>Date:</td>
+				<td><input name="date" type="date" th:field="*{date}"/></td>
+				<td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"
+					th:errorClass="error">Error</td>
+			</tr>
+			<tr>
+				<td>Start Time:</td>
+				<td><input name="startTime" type="time" th:field="*{startTime}"/></td>
+				<td th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"
+					th:errorClass="error">Error</td>
+			</tr>
+			<tr>
+				<td>Home Team:</td>
+				<td th:object="${teamList}">
+					<select name="homeTeamId" type="select">
+						<option th:each="s : ${teamList}" th:value="${s.teamKey}" th:text="${s.name}"></option>
+					</select>
+				</td>
+				<td th:if="${#fields.hasErrors('homeTeamId')}" th:errors="*{homeTeamId}"
+					th:errorClass="error">Error</td>
+			</tr>			
+			<tr>
+				<td>Home Score:</td>
+				<td><input name="homeScore" type="number" th:field="*{homeScore}"/></td>
+				<td th:if="${#fields.hasErrors('homeScore')}" th:errors="*{homeScore}"
+					th:errorClass="error">Error</td>
+			</tr>		
+			<tr>
+				<td>Home Points:</td>
+				<td><input name="homePoints" type="number" th:field="*{homePoints}"/></td>
+				<td th:if="${#fields.hasErrors('homePoints')}" th:errors="*{homePoints}"
+					th:errorClass="error">Error</td>
+			</tr>	
+			<tr>
+				<td>Visitor Team:</td>
+				<td th:object="${teamList}">
+					<select name="visitorTeamId" type="select">
+						<option th:each="s : ${teamList}" th:value="${s.teamKey}" th:text="${s.name}"></option>
+					</select>
+				</td>
+				<td th:if="${#fields.hasErrors('visitorTeamId')}" th:errors="*{visitorTeamId}"
+					th:errorClass="error">Error</td>
+			</tr>					
+			<tr>
+				<td>Visitor Score:</td>
+				<td><input name="visitorScore" type="number" th:field="*{visitorScore}"/></td>
+				<td th:if="${#fields.hasErrors('visitorScore')}" th:errors="*{visitorScore}"
+					th:errorClass="error">Error</td>
+			</tr>
+			<tr>
+				<td>Visitor Points:</td>
+				<td><input name="visitorPoints" type="number" th:field="*{visitorPoints}"/></td>
+				<td th:if="${#fields.hasErrors('visitorPoints')}" th:errors="*{visitorPoints}"
+					th:errorClass="error">Error</td>
+			</tr>
+		</table>
+		<input type="submit" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Matches</title>
+</head>
+<body>
+	<h1>Matches</h1>
+	<table th:object="${matches}">
+		<tr th:each="match : ${matches}">
+			<td th:text="${match.date}">date</td>
+			<td th:text="${match.startTime}">startTime</td>
+			<td th:text="${match.homeScore}">homeScore</td>
+			<td th:text="${match.homeTeam.name}">homeTeam</td>
+			<td th:text="${match.visitorScore}">visitorScore</td>
+			<td th:text="${match.visitorTeam.name}">visitor</td>			
+			<td><a th:href="@{matches/{id}(id=${match.matchKey})}">edit (Not implemented yet)</a></td>
+		</tr>
+	</table>
+	
+	<a th:href="@{/addMatch}"> Add a match </a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Teams</title>
+</head>
+<body>
+	<h1>Available Teams</h1>
+	<table th:object="${teams}">
+		<tr th:each="team : ${teams}">
+			<td th:text="${team.name}">name</td>
+			<td th:text="${team.city}">city</td>
+			<td th:text="${team.mascot}">mascot</td>
+			<td th:text="${team.homeUniform}">homeUniform</td>
+			<td th:text="${team.visitUniform}">visitUniform</td>
+			<td><a th:href="@{teams/{id}(id=${team.teamKey})}">edit (Not implemented yet)</a></td>
+		</tr>
+	</table>
+	
+	<a th:href="@{addteam}"> Add a Team (Not implemented yet)</a>
+</body>
+</html>

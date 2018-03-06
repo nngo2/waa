@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themyleaf.org">
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Stadiums</title>
+</head>
+<body>
+	<h1>Available Stadiums</h1>
+	<table th:object="${stadiums}">
+		<tr th:each="stadium : ${stadiums}">
+			<td th:text="${stadium.name}">name</td>
+			<td th:text="${stadium.city}">city</td>
+			<td th:text="${stadium.state}">state</td>
+			<td><a th:href="@{stadiums/{id}(id=${stadium.stadiumKey})}">edit (Not implemented yet)</a></td>
+		</tr>
+	</table>
+	
+	<a th:href="@{addstadium}"> Add a stadium (Not implemented yet)</a>
+</body>
+</html>
