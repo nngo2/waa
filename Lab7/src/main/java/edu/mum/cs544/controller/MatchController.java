@@ -39,13 +39,6 @@ public class MatchController {
 		return "matchList";
 	}
 	
-	@RequestMapping(value="addMatch", method=RequestMethod.GET)
-	public String addMatch(@ModelAttribute("matchDto") MatchDto match, Model model) {
-		model.addAttribute("stadiumList", stadiumService.getAllStadiums());
-		model.addAttribute("teamList", teamService.getAllTeams());
-		return "addMatch";
-	}
-	
 	@RequestMapping(value="/matches/{id}", method=RequestMethod.GET)
 	public String get(@PathVariable long id, Model model) {
 		//TODO: process friendly match later
@@ -66,8 +59,23 @@ public class MatchController {
 		}
 	}
 	
+	@RequestMapping(value="addMatch", method=RequestMethod.GET)
+	public String addMatch(@ModelAttribute("matchDto") MatchDto match, Model model) {
+		model.addAttribute("stadiumList", stadiumService.getAllStadiums());
+		model.addAttribute("teamList", teamService.getAllTeams());
+		return "addMatch";
+	}
+	
+	/*
+	 * WEIRD !!!!!!
+	 * public String add(@Valid MatchDto match, Model model, BindingResult bindingResult)
+	 * WILL CAUSE WITELABEL ERROR PAGE
+	 * 
+	 * THE POSITION OF bindingResult DO IMPORTANT!!!
+	 */
+	
 	@RequestMapping(value="/matches", method=RequestMethod.POST)
-	public String add(@Valid @ModelAttribute("matchDto") MatchDto match, Model model, BindingResult bindingResult) {
+	public String add(@Valid MatchDto match, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {			
 			return "addMatch";
 		} else {
