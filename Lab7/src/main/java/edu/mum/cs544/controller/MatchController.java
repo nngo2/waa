@@ -49,9 +49,11 @@ public class MatchController {
 	}
 	
 	@RequestMapping(value="/matches/{id}", method=RequestMethod.POST)
-	public String update(@PathVariable long id, @Valid @ModelAttribute("matchDto") MatchDto match, BindingResult bindingResult) {
+	public String update(@PathVariable long id, @Valid @ModelAttribute("matchDto") MatchDto match, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			 return "editMatch";
+			model.addAttribute("stadiumList", stadiumService.getAllStadiums());
+			model.addAttribute("teamList", teamService.getAllTeams());			
+			return "editMatch";
 		} else {
 			//TODO: process friendly match later
 			matchService.updateTournamentMatch(id, match);
@@ -75,8 +77,10 @@ public class MatchController {
 	 */
 	
 	@RequestMapping(value="/matches", method=RequestMethod.POST)
-	public String add(@Valid MatchDto match, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {			
+	public String add(@Valid @ModelAttribute("matchDto") MatchDto match, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {		
+			model.addAttribute("stadiumList", stadiumService.getAllStadiums());
+			model.addAttribute("teamList", teamService.getAllTeams());
 			return "addMatch";
 		} else {
 			//TODO: process friendly match later
