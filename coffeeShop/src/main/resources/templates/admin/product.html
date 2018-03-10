@@ -12,12 +12,7 @@
 <body>
 	<div class="container">
 		<div th:replace="~{commons/header :: adminheader}">Header</div>
-		<div class="row col-center">
-			<h1 th:text="${userName}">Welcome</h1>
-		</div>
-		<div class="row col-center">
-			<h2 th:text="${adminMessage}">Welcome</h2>
-		</div>		
+		<div th:replace="~{commons/product :: productlist}">Header</div>	
 	</div>
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
