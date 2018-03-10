@@ -71,7 +71,7 @@ public class MatchController {
 	/*
 	 * WEIRD !!!!!!
 	 * public String add(@Valid MatchDto match, Model model, BindingResult bindingResult)
-	 * WILL CAUSE WITELABEL ERROR PAGE
+	 * WILL CAUSE WHITELABEL ERROR PAGE
 	 * 
 	 * THE POSITION OF bindingResult DO IMPORTANT!!!
 	 */

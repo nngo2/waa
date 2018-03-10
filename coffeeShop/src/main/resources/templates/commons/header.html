@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<ul id="adminheader" th:fragment="adminheader" class="nav nav-pills">
+	  <li role="presentation" class="active"><a href="@{/admin/products}">Products</a></li>
+	  <li role="presentation"><a th:href="@{/admin/persons}">Persons</a></li>
+	  <li role="presentation"><a th:href="@{/admin/orders}">Orders</a></li>
+	</ul>
+</body>
+</html>
