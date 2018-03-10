@@ -3,10 +3,22 @@
 <head>
 </head>
 <body>
-	<ul id="adminheader" th:fragment="adminheader" class="nav nav-pills">
-	  <li role="presentation" class="active"><a href="@{/admin/products}">Products</a></li>
-	  <li role="presentation"><a th:href="@{/admin/persons}">Persons</a></li>
-	  <li role="presentation"><a th:href="@{/admin/orders}">Orders</a></li>
-	</ul>
+	<nav id="adminheader" th:fragment="adminheader" class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Coffee Shop</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" th:href="@{/admin/products}">Products</a> 
+				<a class="nav-item nav-link" th:href="@{/admin/persons}">Persons</a> 
+				<a class="nav-item nav-link" th:href="@{/admin/orders}">Orders</a>
+
+			</div>
+		</div>
+	</nav>
+
 </body>
 </html>

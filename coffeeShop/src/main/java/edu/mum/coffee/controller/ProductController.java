@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.mum.coffee.model.PersonDto;
-import edu.mum.coffee.service.PersonServiceClient;
+import edu.mum.coffee.model.ProductDto;
+import edu.mum.coffee.service.ProductServiceClient;
 
 @Controller
-public class PersonController {
+public class ProductController {
 	@Autowired
-	private PersonServiceClient personServiceClient;
+	private ProductServiceClient productServiceClient;
 	
-	@RequestMapping(value="/admin/persons", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/products", method = RequestMethod.GET)
 	public ModelAndView getAllProducts() {
 		ModelAndView modelAndView = new ModelAndView();		
-		List<PersonDto> persons = personServiceClient.getAllPersons();
-		modelAndView.addObject("persons", persons);
-		modelAndView.setViewName("admin/persons");
+		List<ProductDto> products = productServiceClient.getAllProdcuts();
+		modelAndView.addObject("products", products);
+		modelAndView.setViewName("admin/product");
 		return modelAndView;
 	}
 }

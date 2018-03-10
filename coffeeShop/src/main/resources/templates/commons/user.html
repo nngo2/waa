@@ -3,8 +3,8 @@
 <head>
 </head>
 <body>
-	<div id="userform" th:fragment="userform" class="container">
-		<div class="row">
+	<div id="userform" th:fragment="userform" class="container h-100">
+		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-6 col-md-offset-3">
 				<form autocomplete="off" action="#" th:action="@{/registration}" th:object="${person}" method="post" class="form-horizontal" role="form">
 					<h2>Registration Form</h2>
@@ -55,11 +55,13 @@
 			</div>
 	
 		</div>
-		<div class="row">
+		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-6 col-md-offset-3">
 				<form th:action="@{/login}" method="get">
-					<div class="col-sm-9">
-						<button class="btn btn-md btn-primary btn-block" type="Submit"> Go to Login page </button>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button class="btn btn-md btn-primary btn-block" type="Submit"> Go to Login page </button>
+						</div>
 					</div>
 				</form>	
 			</div>
