@@ -7,7 +7,7 @@ insert into user_role (user_id, role_id) values (1,1);
 
 insert into person(email, last_name, first_name, enable) values('test@test.com', 'Test', 'Test', 1);
 insert into user(email, password, active) values('test@test.com', '$2a$10$R1kmVEHTHJ90GcejrpmTdOirALp9ZJ7ugMkPSDRKlOhTc1j92WClW', 1);
-insert into user_role (user_id, role_id) values (2,1);
+insert into user_role (user_id, role_id) values (2,2);
 
 insert into product(description, price, product_name, product_type, product_image) values('Grilled Chicken', 2.5, 'Menu 1', 'BREAKFAST', '/images/product1.jpg');
 insert into product(description, price, product_name, product_type, product_image) values('Chicken Tacos', 1.5, 'Menu 2', 'BREAKFAST', '/images/product2.jpg');

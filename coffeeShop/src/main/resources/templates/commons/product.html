@@ -58,7 +58,7 @@
 	<div id="productform" th:fragment="productform">
 		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-6 col-md-offset-3">
-				<form autocomplete="off" th:action="@{/admin/products/create}" th:object="${product}" method="post" class="form-horizontal" role="form">
+				<form autocomplete="off" th:action="@{/admin/products/create}" th:object="${product}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="col-sm-9">
 							<h2>Product Form</h2>
@@ -68,28 +68,32 @@
 					<div class="form-group">
 						<div class="col-sm-9">
 							<label th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="validation-message"></label>
-							<input type="text" th:field="*{productName}" placeholder="Product Name" class="form-control" /> 
+							<label for="productName">Product Name</label>
+							<input id="productName" type="text" th:field="*{productName}" placeholder="Product Name" class="form-control" /> 
 						</div>
 					</div>
 	
 					<div class="form-group">
 						<div class="col-sm-9">
 							<label	th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="validation-message"></label>
-							<input type="text" th:field="*{description}" placeholder="Description" class="form-control" /> 
+							<label for="description">Description</label>
+							<input id="description" type="text" th:field="*{description}" placeholder="Description" class="form-control" /> 
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<div class="col-sm-9">
 							<label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="validation-message"></label>
-							<input type="number" th:field="*{price}" placeholder="Price" class="form-control" /> 
+							<label for="price">Price</label>
+							<input id="price" type="number" step="0.5" th:field="*{price}" placeholder="Price" class="form-control" /> 
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<div class="col-sm-9">
 							<label th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}" class="validation-message"></label>
-							<select th:field="*{productType}" class="form-control">
+							<label for="productType">Product Type</label>
+							<select id="productType" th:field="*{productType}" class="form-control">
 								<option th:each="type : ${T(edu.mum.coffee.domain.ProductType).values()}" 
 									th:value="${type}" th:text="${type}"
 									th:selected="${type == product.productType}"></option>
@@ -97,14 +101,12 @@
 						</div>
 					</div>
 					
-					<!-- 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('productImage')}" th:errors="*{productImage}" class="validation-message"></label>
-							<input type="file" th:field="*{productImage}" placeholder="Product Image" class="form-control" /> 
+							<label for="file">Product Image</label>
+							<input id="file" name="file" type="file" placeholder="Product Image" class="form-control" /> 
 						</div>
 					</div>
-					 -->
 	
 					<div class="form-group">
 						<div class="col-sm-9">
