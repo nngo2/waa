@@ -18,7 +18,7 @@ import edu.mum.coffee.service.OrderService;
 import edu.mum.coffee.service.PersonService;
 
 @Controller
-public class MyOrderController {
+public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
@@ -26,7 +26,7 @@ public class MyOrderController {
 	private PersonService personService;	
 	
 	@RequestMapping(value = "/myorders", method = RequestMethod.GET)
-	public ModelAndView getOrder(ModelMap map) {
+	public ModelAndView getMyOrders(ModelMap map) {
 		if (!map.containsAttribute("person")) {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String name = auth.getName(); // get logged in username
@@ -48,6 +48,16 @@ public class MyOrderController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("order", order);
 		modelAndView.setViewName("order_detail");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/admin/orders", method = RequestMethod.GET)
+	public ModelAndView getOrders(ModelMap map) {		
+		List<Order> orders = orderService.findAll();
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("orders", orders);
+		modelAndView.setViewName("admin/order");
 		return modelAndView;
 	}
 }

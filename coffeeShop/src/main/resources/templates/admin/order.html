@@ -1,29 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Order Details</title>
+	<title>Orders</title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 <body>
 	<div class="container">
-		<div class="row" sec:authorize="hasAuthority('USER')">
-			<div class="col">
-				<div th:replace="~{commons/header :: userheader}">Header</div>
-			</div>
-		</div>
-		<div class="row" sec:authorize="hasAuthority('ADMIN')">
+		<div class="row">
 			<div class="col">
 				<div th:replace="~{commons/header :: adminheader}">Header</div>
 			</div>
-		</div>		
+		</div>
 		<div class="row">
 			<div class="col" id="main">
-				<div th:replace="~{commons/order :: viewdetail}">Details</div>	
+				<div th:replace="~{commons/order :: orderlist}">List</div>	
 			</div>
 		</div>				
 	</div>

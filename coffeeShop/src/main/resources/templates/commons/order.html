@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 </head>
 <body>
@@ -9,6 +9,7 @@
 			<table class="table" th:object="${orders}">
 				<thead>
 					<tr>
+						<th sec:authorize="hasAuthority('ADMIN')" scope="col">Order By</th>
 						<th scope="col">Date</th>
 						<th scope="col">Total Amount</th>
 						<th scope="col">Details</th>
@@ -16,6 +17,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="order : ${orders}">
+						<td sec:authorize="hasAuthority('ADMIN')" th:text="${order.person.email}">Order Date</td>
 						<td th:text="${order.orderDate}">Order Date</td>
 						<td th:text="${order.getTotalAmount()}">Total Amount</td>	
 						<td><a th:href="@{/order/{id}(id=${order.id})}">View Details</a></td>					
@@ -27,6 +29,7 @@
 	
 	<div id="viewdetail" th:fragment="viewdetail" class="container h-100">
 		<div class="row justify-content-left align-items-left">
+			<p class="col">Order By: <span th:text="${order.person.email}">...</span> </p>
 			<p class="col">Order Date: <span th:text="${order.orderDate}">...</span> </p>
 			<p class="col">Total Amount: <span th:text="${order.getTotalAmount()}">...</span></p>
 		</div>
