@@ -35,4 +35,10 @@ public class PersonRestController {
 		return personService.savePerson(person);
 	}
 	
+	@RequestMapping(value="/api/persons", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.CREATED)
+	public Person updatePerson(@RequestBody Person person) {
+		return personService.updatePerson(person);
+	}
+	
 }

@@ -5,7 +5,10 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,4 +56,30 @@ public class PersonController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/myprofile", method = RequestMethod.GET)
+	public String getMyProfile(@ModelAttribute("person") PersonDto person, Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("person", personServiceClient.findByEmail(auth.getName()));
+		return "my_profile";
+	}	
+	
+	@RequestMapping(value = "/myprofile/update", method = RequestMethod.POST)
+	public ModelAndView updateMyProfile(@Valid @ModelAttribute("person") PersonDto person, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();		
+		
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("my_profile");
+		} else {
+			// need to reset the email since it is disable in screen, not pass back
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			person.setEmail(auth.getName());
+			personServiceClient.updatePerson(person);
+			modelAndView.addObject("successMessage", "Profile has been updated successfully");
+			modelAndView.setViewName("my_profile");
+		}
+		
+		return modelAndView;
+	}
+	
 }

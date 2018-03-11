@@ -35,6 +35,11 @@ public class PersonServiceClient {
 		return restTemplate.postForObject(restUri + PERSON_SERVICE_PATH, request, PersonDto.class);
 	}
 	
+	public void updatePerson(PersonDto person) {
+		HttpEntity<PersonDto> request = new HttpEntity<PersonDto>(person);
+		restTemplate.put(restUri + PERSON_SERVICE_PATH, request);
+	}
+	
 	public PersonDto findByEmail(String email) {
 		return restTemplate.getForObject(restUri + PERSON_SERVICE_PATH + "/findbyemail?email=" + email, PersonDto.class);
 	}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.mum.coffee.domain.Address;
 import edu.mum.coffee.domain.Person;
 import edu.mum.coffee.domain.User;
 import edu.mum.coffee.repository.PersonRepository;
@@ -24,6 +25,25 @@ public class PersonService {
 		User user = new User(person.getEmail(), person.getPassword());
 		userService.saveUser(user);	
 		return personRepository.save(person);
+	}
+	
+	public Person updatePerson(Person person) {
+		Person cPerson = personRepository.findByEmail(person.getEmail());
+		
+		Address addr = person.getAddress();
+		if (addr != null) {
+			Address eAddr = cPerson.getAddress();
+			if (eAddr != null) {
+				addr.setId(eAddr.getId());
+			}
+			cPerson.setAddress(addr);
+		}
+
+		cPerson.setFirstName(person.getFirstName());
+		cPerson.setLastName(person.getLastName());
+		cPerson.setPhone(person.getPhone());
+		
+		return personRepository.save(cPerson);
 	}
 
 	public Person findByEmail(String email) {

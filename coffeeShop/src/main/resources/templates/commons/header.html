@@ -33,6 +33,7 @@
 				<a class="nav-item nav-link" th:href="@{/}">Products</a> 
 				<a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item nav-link" th:href="@{/cart}">My Cart</a>				
 				<a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item nav-link" th:href="@{/myorders}">My Orders</a> 
+				<a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item nav-link" th:href="@{/myprofile}">My Profile</a>								
 				<a th:if="${not #authorization.expression('isAuthenticated()')}" class="nav-item nav-link" th:href="@{/login}">Login</a>					
 				<a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item nav-link" th:href="@{/logout}">Logout</a>
 			</div>
