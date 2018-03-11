@@ -7,17 +7,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Orderline")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Orderline {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	private int quantity;
+	
 	@OneToOne
 	private Product product;
+	
 	@ManyToOne
+	@JsonBackReference
 	private Order order;
 
 	public int getId() {
@@ -55,7 +62,5 @@ public class Orderline {
 	public double getPrice() {
 		return product.getPrice();
 	}
-	
-	
 
 }
