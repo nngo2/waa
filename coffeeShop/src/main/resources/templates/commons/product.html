@@ -3,6 +3,25 @@
 <head>
 </head>
 <body>
+	<div id="productBrowsing" th:fragment="productBrowsing" class="container h-100" th:object="${products}">
+	 	<div class="row">
+	        <div class="col-lg-4" th:each="product : ${products}">
+		        <div class="card" style="width: 18rem;">
+				  	<img class="card-img-top" th:src="${product.productImage}" alt="Card image cap">
+				  	<div class="card-body">
+				    	<h5 class="card-title" th:text="${product.productName}">Product name</h5>
+				    	<p class="card-text" th:text="${product.description}">Description</p>
+						<p class="card-text" th:text="${product.price}">Price</p>
+						<p class="card-text" th:text="${product.productType}">Type</p>			
+						<form th:if="${#authorization.expression('isAuthenticated()')}" autocomplete="off" th:action="@{/cart/add/{id}(id=${product.id})}" method="post" class="form-horizontal" role="form">
+							<button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+						</form>
+				  	</div>
+				</div>
+	        </div>
+        </div>
+	</div>
+
 	<div id="productlist" th:fragment="productlist" class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
 			<table class="table" th:object="${products}">
@@ -25,6 +44,77 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+	</div>
+	
+	<div id="productlistleft" th:fragment="productlistleft" class="row">
+		<div class="col-xs-4">
+			<div class="col-xs-12" id="sticky-sidebar">
+				<a class="nav-item nav-link" th:href="@{/admin/products/create}" th:text="'Create Product'">Create Product</a> 
+			</div>
+		</div>
+	</div>
+	
+	<div id="productform" th:fragment="productform">
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="col-md-6 col-md-offset-3">
+				<form autocomplete="off" th:action="@{/admin/products/create}" th:object="${product}" method="post" class="form-horizontal" role="form">
+					<div class="form-group">
+						<div class="col-sm-9">
+							<h2>Product Form</h2>
+						</div>
+					</div>
+				
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="validation-message"></label>
+							<input type="text" th:field="*{productName}" placeholder="Product Name" class="form-control" /> 
+						</div>
+					</div>
+	
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label	th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="validation-message"></label>
+							<input type="text" th:field="*{description}" placeholder="Description" class="form-control" /> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="validation-message"></label>
+							<input type="number" th:field="*{price}" placeholder="Price" class="form-control" /> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}" class="validation-message"></label>
+							<select th:field="*{productType}" class="form-control">
+								<option th:each="type : ${T(edu.mum.coffee.domain.ProductType).values()}" 
+									th:value="${type}" th:text="${type}"
+									th:selected="${type == product.productType}"></option>
+							</select>
+						</div>
+					</div>
+					
+					<!-- 
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('productImage')}" th:errors="*{productImage}" class="validation-message"></label>
+							<input type="file" th:field="*{productImage}" placeholder="Product Image" class="form-control" /> 
+						</div>
+					</div>
+					 -->
+	
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Create Product</button>
+						</div>
+					</div>
+					
+					<span th:utext="${successMessage}"></span>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

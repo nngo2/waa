@@ -20,6 +20,10 @@ public class Orderline {
 	@ManyToOne
 	private Order order;
 
+	public int getId() {
+		return id;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -51,5 +55,7 @@ public class Orderline {
 	public double getPrice() {
 		return product.getPrice();
 	}
+	
+	
 
 }

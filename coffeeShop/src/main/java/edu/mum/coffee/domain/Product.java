@@ -17,17 +17,19 @@ public class Product {
 	private double price;
 	@Enumerated(EnumType.STRING)
 	private ProductType productType;
+	private String productImage;
 
 	public Product() {
 		super(); // default constructor
 	}
 
-	public Product(String productName, String description, double price, ProductType productType) {
+	public Product(String productName, String description, double price, ProductType productType, String productImage) {
 		super();
 		this.productName = productName;
 		this.description = description;
 		this.price = price;
 		this.productType = productType;
+		this.productImage = productImage;
 	}
 
 	public ProductType getProductType() {
@@ -66,4 +68,15 @@ public class Product {
 		return id;
 	}
 
+	public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

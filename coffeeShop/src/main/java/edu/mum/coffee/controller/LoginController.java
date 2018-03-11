@@ -28,7 +28,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
-	public String registration(@ModelAttribute("person") PersonDto peron){
+	public String registration(@ModelAttribute("person") PersonDto person){
 		return "registration";
 	}	
 	

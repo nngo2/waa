@@ -1,6 +1,7 @@
 package edu.mum.coffee.model;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -41,5 +42,8 @@ public class UserDto {
 	}
 	public void setRoles(Set<RoleDto> roles) {
 		this.roles = roles;
+	}
+	public String fortmatRoles() {
+		return roles.stream().map(RoleDto::getRole).collect(Collectors.joining(","));
 	}
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Products</title>
+	<title>Product Details</title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
@@ -21,7 +21,7 @@
 				<div th:replace="~{commons/product :: productlistleft}">Left</div>		
 			</div>
 			<div class="col-lg-10" id="main">
-				<div th:replace="~{commons/product :: productlist}">List</div>	
+				<div th:replace="~{commons/product :: productform}">Details</div>	
 			</div>
 		</div>				
 	</div>

@@ -11,3 +11,12 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+#sticky-sidebar {
+	position:fixed;
+	max-width: 20%;
+}
+
+.card {
+	magin: 10px;
+}

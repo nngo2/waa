@@ -13,15 +13,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<div th:replace="~{commons/header :: adminheader}">Header</div>
+				<div th:replace="~{commons/header :: userheader}">Header</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-2">
-				<div th:replace="~{commons/product :: productlistleft}">Left</div>		
-			</div>
 			<div class="col-lg-10" id="main">
-				<div th:replace="~{commons/product :: productlist}">List</div>	
+				<div th:replace="~{commons/product :: productBrowsing}">List</div>	
 			</div>
 		</div>				
 	</div>
