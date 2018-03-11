@@ -38,7 +38,7 @@
 
 	<div id="usereditformfield" th:fragment="usereditformfield">
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message"></label>
 				<label for="firstName">First Name</label>
 				<input id="firstName" type="text" th:field="*{firstName}" placeholder="First Name" class="form-control" /> 
@@ -46,7 +46,7 @@
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
 				<label for="lastName">Last Name</label>
 				<input id="lastName" type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control" /> 
@@ -54,7 +54,7 @@
 		</div>
 		
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="validation-message"></label>
 				<label for="phone">Phone</label>
 				<input id="phone" type="tel" th:field="*{phone}" placeholder="Phone" class="form-control" /> 
@@ -62,7 +62,7 @@
 		</div>
 		
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
 				<label for="email">Email</label>				
 				<input id="email" type="email" th:field="*{email}" placeholder="Email" class="form-control" disabled /> 
@@ -72,28 +72,28 @@
 		<fieldset th:object="${person.address}">
 			<legend>Address</legend>
 			<div class="form-group">
-				<div class="col-sm-9">
+				<div class="col-md-9">
 					<label th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="validation-message"></label>
 					<label for="city">City</label>
 					<input id="city" type="text" th:field="*{city}" placeholder="City" class="form-control" /> 
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-9">
+				<div class="col-md-9">
 					<label th:if="${#fields.hasErrors('state')}" th:errors="*{state}" class="validation-message"></label>
 					<label for="state">State</label>
 					<input id="state" type="text" th:field="*{state}" placeholder="State" class="form-control" /> 
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-9">
+				<div class="col-md-9">
 					<label th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" class="validation-message"></label>
 					<label for="zipcode">Zipcode</label>
 					<input id="zipcode" type="text" th:field="*{zipcode}" placeholder="Zipcode" class="form-control" /> 
 				</div>
 			</div>	
 			<div class="form-group">
-				<div class="col-sm-9">
+				<div class="col-md-9">
 					<label th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="validation-message"></label>
 					<label for="country">Country</label>
 					<input id="country" type="text" th:field="*{country}" placeholder="Country" class="form-control" /> 
@@ -104,7 +104,7 @@
 
 	<div id="userformfield" th:fragment="userformfield">
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message"></label>
 				<label for="firstName">First Name</label>
 				<input id="firstName" type="text" th:field="*{firstName}" placeholder="First Name" class="form-control" /> 
@@ -112,7 +112,7 @@
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
 				<label for="lastName">Last Name</label>
 				<input id="lastName" type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control" /> 
@@ -120,7 +120,7 @@
 		</div>
 		
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="validation-message"></label>
 				<label for="phone">Phone</label>
 				<input id="phone" type="tel" th:field="*{phone}" placeholder="Phone" class="form-control" /> 
@@ -128,7 +128,7 @@
 		</div>
 		
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
 				<label for="email">Email</label>				
 				<input id="email" type="email" th:field="*{email}" placeholder="Email" class="form-control" /> 
@@ -136,7 +136,7 @@
 		</div>					
 		
 		<div class="form-group">
-			<div class="col-sm-9">
+			<div class="col-md-9">
 				<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
 				<label for="password">Password</label>				
 				<input id="password" type="password" th:field="*{password}" placeholder="Password" class="form-control" /> 
@@ -147,13 +147,13 @@
 	<div id="usereditform" th:fragment="usereditform" class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-6 col-md-offset-3">
-				<form autocomplete="off" action="#" th:action="@{/myprofile/update}" th:object="${person}" method="post" class="form-horizontal" role="form">
+				<form autocomplete="off" th:action="@{/myprofile/update}" th:object="${person}" method="post" class="form-horizontal" role="form">
 					<h2 class="from-group">Edit User</h2>
 					
 					<div th:replace="~{this :: usereditformfield}"></div>
 				
 					<div class="form-group">
-						<div class="col-sm-9">
+						<div class="col-md-9">
 							<button type="submit" class="btn btn-primary btn-block">Update User</button>
 						</div>
 					</div>
@@ -166,14 +166,14 @@
 
 	<div id="userformadmin" th:fragment="userformadmin" class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
-			<div class="col-md-6 col-md-offset-3">
-				<form autocomplete="off" action="#" th:action="@{/admin/persons/create}" th:object="${person}" method="post" class="form-horizontal" role="form">
+			<div class="col-md-9">
+				<form autocomplete="off" th:action="@{/admin/persons/create}" th:object="${person}" method="post" class="form-horizontal" role="form">
 					<h2 class="from-group">User Form</h2>
 					
 					<div th:replace="~{this :: userformfield}"></div>
 				
 					<div class="form-group">
-						<div class="col-sm-9">
+						<div class="col-md-9">
 							<button type="submit" class="btn btn-primary btn-block">Create User</button>
 						</div>
 					</div>
@@ -186,14 +186,14 @@
 
 	<div id="userform" th:fragment="userform" class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-6 col-md-offset-5">
 				<form autocomplete="off" action="#" th:action="@{/registration}" th:object="${person}" method="post" class="form-horizontal" role="form">
 					<h2 class="from-group">Registration Form</h2>
 					
 					<div th:replace="~{this :: userformfield}"></div>
 				
 					<div class="form-group">
-						<div class="col-sm-9">
+						<div class="col-md-9">
 							<button type="submit" class="btn btn-primary btn-block">Register User</button>
 						</div>
 					</div>
@@ -204,10 +204,10 @@
 		</div>
 		
 		<div class="row h-100 justify-content-center align-items-center">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-6 col-md-offset-5">
 				<form th:action="@{/login}" method="get">
 					<div class="form-group">
-						<div class="col-sm-9">
+						<div class="col-md-9">
 							<button class="btn btn-md btn-primary btn-block" type="Submit"> Go to Login page </button>
 						</div>				
 					</div>

@@ -16,13 +16,16 @@
 				<div th:replace="~{commons/header :: adminheader}">Header</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" th:object="${product}">
 			<div class="col-lg-2">
 				<div th:replace="~{commons/product :: productlistleft}">Left</div>		
 			</div>
-			<div class="col-lg-10" id="main">
+			<div class="col-lg-10" id="main" th:if="${product.id == 0}">
 				<div th:replace="~{commons/product :: productform}">Details</div>	
 			</div>
+			<div class="col-lg-10" id="main" th:if="${product.id > 0}">
+				<div th:replace="~{commons/product :: producteditform}">Details</div>	
+			</div>			
 		</div>				
 	</div>
 	<!-- Optional JavaScript -->

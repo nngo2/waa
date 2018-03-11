@@ -34,5 +34,17 @@ public class ProductRestController {
 	public Product createProduct(@RequestBody Product product) {
 		return  productService.save(product);
 	}
-
+	
+	@RequestMapping(value="/api/products", method = RequestMethod.PUT)
+	public Product updateProduct(@RequestBody Product product) {
+		return  productService.save(product);
+	}
+	
+	@RequestMapping(value="/api/products/{id}", method = RequestMethod.DELETE)
+	public void deleteProduct(@PathVariable("id") int id) {
+		Product product = productService.getProduct(id);
+		if (product != null) {
+			productService.delete(product);
+		}
+	}
 }

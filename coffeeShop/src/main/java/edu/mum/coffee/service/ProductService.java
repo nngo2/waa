@@ -18,6 +18,17 @@ public class ProductService   {
 	private ProductRepository productRepository;
 		
 	public Product save(Product product) {
+		Product eProduct = productRepository.findById(product.getId());
+		
+		if (eProduct != null) {
+			eProduct.setDescription(product.getDescription());
+			eProduct.setPrice(product.getPrice());
+			eProduct.setProductImage(product.getProductImage());
+			eProduct.setProductName(product.getProductName());
+			eProduct.setProductType(product.getProductType());
+			return productRepository.save(eProduct);
+		}
+		
 		return productRepository.save(product);
 	}
 

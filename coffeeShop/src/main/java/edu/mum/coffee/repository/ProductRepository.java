@@ -11,7 +11,7 @@ import edu.mum.coffee.domain.ProductType;
 
 @Repository
 public interface ProductRepository  extends JpaRepository<Product, Serializable>{
-
+	public Product findById(int id);
 	public List<Product> findByProductNameLikeOrDescriptionLikeAllIgnoreCase(String productName, String description); 
 	public List<Product> findByProductType(ProductType productType); 
 	public List<Product> findByPriceBetween(Double minPrice, Double maxPrice);

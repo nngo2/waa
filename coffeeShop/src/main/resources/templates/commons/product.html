@@ -3,23 +3,30 @@
 <head>
 </head>
 <body>
-	<div id="productBrowsing" th:fragment="productBrowsing" class="container h-100" th:object="${products}">
-	 	<div class="row">
-	        <div class="col-lg-4" th:each="product : ${products}">
-		        <div class="card" style="width: 18rem;">
-				  	<img class="card-img-top" th:src="${product.productImage}" alt="Card image cap">
-				  	<div class="card-body">
-				    	<h5 class="card-title" th:text="${product.productName}">Product name</h5>
-				    	<p class="card-text" th:text="${product.description}">Description</p>
+	<div id="productBrowsing" th:fragment="productBrowsing"
+		class="container h-100" th:object="${products}">
+		<div class="row">
+			<div class="col-lg-4" th:each="product : ${products}">
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" th:src="${product.productImage}"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${product.productName}">Product
+							name</h5>
+						<p class="card-text" th:text="${product.description}">Description</p>
 						<p class="card-text" th:text="${product.price}">Price</p>
-						<p class="card-text" th:text="${product.productType}">Type</p>			
-						<form th:if="${#authorization.expression('isAuthenticated()')}" autocomplete="off" th:action="@{/cart/add/{id}(id=${product.id})}" method="post" class="form-horizontal" role="form">
-							<button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+						<p class="card-text" th:text="${product.productType}">Type</p>
+						<form th:if="${#authorization.expression('isAuthenticated()')}"
+							autocomplete="off"
+							th:action="@{/cart/add/{id}(id=${product.id})}" method="post"
+							class="form-horizontal" role="form">
+							<button type="submit" class="btn btn-primary btn-block">Add
+								to Cart</button>
 						</form>
-				  	</div>
+					</div>
 				</div>
-	        </div>
-        </div>
+			</div>
+		</div>
 	</div>
 
 	<div id="productlist" th:fragment="productlist" class="container h-100">
@@ -32,89 +39,124 @@
 						<th scope="col">Description</th>
 						<th scope="col">Price</th>
 						<th scope="col">Product Type</th>
+						<th scope="col">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="product : ${products}">
-						<th th:text="${product.id}" scope="row">id</th>
+						<td th:text="${product.id}" scope="row">id</td>
 						<td th:text="${product.productName}">Product Name</td>
 						<td th:text="${product.description}">Description</td>
 						<td th:text="${product.price}">Price</td>
-						<td th:text="${product.productType}">Type</td>						
+						<td th:text="${product.productType}">Type</td>
+						<td><a th:href="@{/admin/products/{id}(id=${product.id})}">Edit</a></td>
+						<td><a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a></td>						
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
+
 	<div id="productlistleft" th:fragment="productlistleft" class="row">
 		<div class="col-xs-4">
 			<div class="col-xs-12" id="sticky-sidebar">
-				<a class="nav-item nav-link" th:href="@{/admin/products/create}" th:text="'Create Product'">Create Product</a> 
+				<a class="nav-item nav-link" th:href="@{/admin/products/create}"
+					th:text="'Create Product'">Create Product</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="productformfield" th:fragment="productformfield">
+		<div class="form-group">
+			<div class="col-sm-9">
+				<h2>Product Form</h2>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-9">
+				<label th:if="${#fields.hasErrors('productName')}"
+					th:errors="*{productName}" class="validation-message"></label> <label
+					for="productName">Product Name</label> <input id="productName"
+					type="text" th:field="*{productName}" placeholder="Product Name"
+					class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-9">
+				<label th:if="${#fields.hasErrors('description')}"
+					th:errors="*{description}" class="validation-message"></label> <label
+					for="description">Description</label> <input id="description"
+					type="text" th:field="*{description}" placeholder="Description"
+					class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-9">
+				<label th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+					class="validation-message"></label> <label for="price">Price</label>
+				<input id="price" type="number" step="0.5" th:field="*{price}"
+					placeholder="Price" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-9">
+				<label th:if="${#fields.hasErrors('productType')}"
+					th:errors="*{productType}" class="validation-message"></label> <label
+					for="productType">Product Type</label> <select id="productType"
+					th:field="*{productType}" class="form-control">
+					<option
+						th:each="type : ${T(edu.mum.coffee.domain.ProductType).values()}"
+						th:value="${type}" th:text="${type}"
+						th:selected="${type == product.productType}"></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-9">
+				<label for="file">Product Image</label> <input id="file"
+					name="file" type="file" placeholder="Product Image"
+					class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-9">
+				<button type="submit" class="btn btn-primary btn-block">Save
+					Product</button>
+			</div>
+		</div>
+		
+		<span th:utext="${successMessage}"></span>
+	</div>
+
+	<div id="productform" th:fragment="productform">
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="col-md-10">
+				<form autocomplete="off" th:action="@{/admin/products/create}"
+					th:object="${product}" method="post" class="form-horizontal"
+					role="form" enctype="multipart/form-data">
+					
+						<div th:replace="~{this :: productformfield}"></div>
+		
+				</form>
 			</div>
 		</div>
 	</div>
 	
-	<div id="productform" th:fragment="productform">
+	<div id="producteditform" th:fragment="producteditform">
 		<div class="row h-100 justify-content-center align-items-center">
-			<div class="col-md-6 col-md-offset-3">
-				<form autocomplete="off" th:action="@{/admin/products/create}" th:object="${product}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
-					<div class="form-group">
-						<div class="col-sm-9">
-							<h2>Product Form</h2>
-						</div>
-					</div>
-				
-					<div class="form-group">
-						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="validation-message"></label>
-							<label for="productName">Product Name</label>
-							<input id="productName" type="text" th:field="*{productName}" placeholder="Product Name" class="form-control" /> 
-						</div>
-					</div>
-	
-					<div class="form-group">
-						<div class="col-sm-9">
-							<label	th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="validation-message"></label>
-							<label for="description">Description</label>
-							<input id="description" type="text" th:field="*{description}" placeholder="Description" class="form-control" /> 
-						</div>
-					</div>
+			<div class="col-md-10">
+				<form autocomplete="off" th:action="@{/admin/products/edit/{id}(id=${product.id})}"
+					th:object="${product}" method="post" class="form-horizontal"
+					role="form" enctype="multipart/form-data">
 					
-					<div class="form-group">
-						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="validation-message"></label>
-							<label for="price">Price</label>
-							<input id="price" type="number" step="0.5" th:field="*{price}" placeholder="Price" class="form-control" /> 
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}" class="validation-message"></label>
-							<label for="productType">Product Type</label>
-							<select id="productType" th:field="*{productType}" class="form-control">
-								<option th:each="type : ${T(edu.mum.coffee.domain.ProductType).values()}" 
-									th:value="${type}" th:text="${type}"
-									th:selected="${type == product.productType}"></option>
-							</select>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-							<label for="file">Product Image</label>
-							<input id="file" name="file" type="file" placeholder="Product Image" class="form-control" /> 
-						</div>
-					</div>
-	
-					<div class="form-group">
-						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Create Product</button>
-						</div>
-					</div>
-					
-					<span th:utext="${successMessage}"></span>
+						<div th:replace="~{this :: productformfield}"></div>
+		
 				</form>
 			</div>
 		</div>

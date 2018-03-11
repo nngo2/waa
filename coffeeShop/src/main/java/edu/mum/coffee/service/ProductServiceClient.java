@@ -35,6 +35,15 @@ public class ProductServiceClient {
 		return restTemplate.postForObject(restUri + SERVICE_PATH, request, ProductDto.class);
 	}
 	
+	public void updateProduct(ProductDto product) {
+		HttpEntity<ProductDto> request = new HttpEntity<ProductDto>(product);
+		restTemplate.put(restUri + SERVICE_PATH, request, ProductDto.class);
+	}
+	
+	public void deleteProduct(int id) {
+		restTemplate.delete(restUri + SERVICE_PATH + "/" + id);
+	}	
+	
 	public ProductDto findById(int id) {
 		return restTemplate.getForObject(restUri + SERVICE_PATH + "/" + id, ProductDto.class);
 	}
