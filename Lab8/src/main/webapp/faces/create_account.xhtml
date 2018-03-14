@@ -10,28 +10,23 @@
 <title>Create/Edit Account</title>
 </head>
 <body jsf:id="body">
-  	<f:metadata>
- 		<f:viewAction action="#{accountBean.init}" />
-    </f:metadata>
-	<p>
+	<p>		
 		<a href="../accounts.xhtml">Account List</a>
 	</p>
 	<h1>Create Account</h1>
 	<form jsf:id="form">
 		<div>
-			<label for="acctNumber">Account Number</label> <input type="number"
-				jsf:id="acctNumber" name="acctNumber"
-				value="#{accountBean.acctNumber}" required="required" />
+			<label for="acctNumber">Account Number</label> 
+			<input type="number" jsf:id="acctNumber" name="acctNumber" value="#{createAccountBean.acctNumber}" required="required" />
 		</div>
 		<div>
-			<label for="customer">Customer</label> <input type="text"
-				jsf:id="customer" name="customer" value="#{accountBean.customer}"
-				required="required" />
+			<label for="customer">Customer</label> 
+			<input type="text" jsf:id="customer" name="customer" value="#{createAccountBean.customer}" required="required" />
 		</div>
 		<div>
-			<button jsf:action="#{accountBean.create}">Create Account</button>
+			<button jsf:action="#{createAccountBean.create}">Create Account</button>
 		</div>
-		<p>#{accountBean.message}</p>
+		<p>#{createAccountBean.message}</p>
 	</form>
 </body>
 </html>

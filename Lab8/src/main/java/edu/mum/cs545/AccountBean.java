@@ -38,21 +38,13 @@ public class AccountBean implements Serializable {
 	
 	public void init() {
 		message = "";
+		txAmount = 0;
 		Account acct = accountService.getAccount(acctNumber);
 		if (acct != null) {
 			acctNumber = acct.getAccountnumber();
 			customer = acct.getCustomer().getName();	
 			balance = acct.getBalance();
-		} else {
-			acctNumber = 0;
-			customer = "";
-			balance = 0.0;
-		}
-	}
-
-	public void create() {
-		accountService.createAccount(acctNumber, customer);
-		message = "Account: " + acctNumber + " has been created";
+		} 
 	}
 	
 	public void deposit () {
