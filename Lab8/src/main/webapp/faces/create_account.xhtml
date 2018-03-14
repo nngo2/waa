@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/facelets">
+<head jsf:id="head">
+<title>Create/Edit Account</title>
+</head>
+<body jsf:id="body">
+  	<f:metadata>
+ 		<f:viewAction action="#{accountBean.init}" />
+    </f:metadata>
+	<p>
+		<a href="../accounts.xhtml">Account List</a>
+	</p>
+	<h1>Create Account</h1>
+	<form jsf:id="form">
+		<div>
+			<label for="acctNumber">Account Number</label> <input type="number"
+				jsf:id="acctNumber" name="acctNumber"
+				value="#{accountBean.acctNumber}" required="required" />
+		</div>
+		<div>
+			<label for="customer">Customer</label> <input type="text"
+				jsf:id="customer" name="customer" value="#{accountBean.customer}"
+				required="required" />
+		</div>
+		<div>
+			<button jsf:action="#{accountBean.create}">Create Account</button>
+		</div>
+		<p>#{accountBean.message}</p>
+	</form>
+</body>
+</html>
