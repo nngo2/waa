@@ -24,9 +24,8 @@
 			<input type="text" jsf:id="customer" name="customer" value="#{createAccountBean.customer}" required="required" />
 		</div>
 		<div>
-			<button jsf:action="#{createAccountBean.create}">Create Account</button>
+			<h:commandButton value="Next" action="next" />
 		</div>
-		<p>#{createAccountBean.message}</p>
 	</form>
 </body>
 </html>

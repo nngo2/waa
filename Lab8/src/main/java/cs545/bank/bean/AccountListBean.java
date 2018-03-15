@@ -1,8 +1,9 @@
-package edu.mum.cs545;
+package cs545.bank.bean;
 
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,16 +17,11 @@ public class AccountListBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private IAccountService  accountService;	
 	
-	public AccountListBean() {
-		super();
-	}
-
-	@Inject
-	public AccountListBean(IAccountService  accountService) {
-		this.accountService = accountService;
-		
+	@PostConstruct
+	public void init() {
 		// create 2 accounts;
 		accountService.createAccount(1263862, "Frank Brown");
 		accountService.createAccount(4253892, "John Doe");
@@ -42,5 +38,12 @@ public class AccountListBean implements Serializable {
 	public Collection<Account> getAccounts() {
 		return accountService.getAllAccounts();
 	}
-	
+
+	public IAccountService getAccountService() {
+		return accountService;
+	}
+
+	public void setAccountService(IAccountService accountService) {
+		this.accountService = accountService;
+	}
 }

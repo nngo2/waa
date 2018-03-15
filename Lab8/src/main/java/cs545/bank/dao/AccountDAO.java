@@ -8,8 +8,8 @@ import javax.enterprise.inject.Model;
 
 import cs545.bank.domain.Account;
 
-@Model
-@ApplicationScoped
+/*@Model
+@ApplicationScoped*/
 public class AccountDAO implements IAccountDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	

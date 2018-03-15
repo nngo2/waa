@@ -8,24 +8,40 @@
 	xmlns:ui="http://xmlns.jcp.org/facelets">
 <head jsf:id="head">
 <title>Accounts</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body jsf:id="body">
-	<p>
-		<a href="faces/create_account.xhtml">Create Account</a>
-	</p>
-	<h1>Existing accounts</h1>
-	<h:dataTable value="#{accountListBean.accounts}" var="acct">
-		<h:column>#{acct.customer.name}</h:column>
-
-		<h:column>#{acct.accountnumber}</h:column>
-
-		<h:column>#{acct.balance}</h:column>
-		
-		<h:column>
-			<h:link value="Details" outcome="faces/account_detail">
-            	<f:param name="id" value="#{acct.accountnumber}" />
-            </h:link>
-		</h:column>
-	</h:dataTable>
+	<h:form>
+		<h:panelGrid columns="1">
+			<h1>Create Account</h1>
+			<h:link outcome="create-account">Create Account</h:link>
+		</h:panelGrid>
+	</h:form>
+	<h:panelGrid columns="1">
+		<h1>Existing accounts</h1>
+		<h:dataTable value="#{accountListBean.accounts}" var="acct" headerClass="tableHeader">
+			<h:column>
+			  	<f:facet name = "header">Customer</f:facet>    	
+				#{acct.customer.name}
+			</h:column>
+	
+			<h:column>
+				<f:facet name = "header">Account</f:facet>    	
+				#{acct.accountnumber}
+			</h:column>
+	
+			<h:column>
+			  	<f:facet name = "header">Balance</f:facet>    			
+				#{acct.balance}
+			</h:column>
+			
+			<h:column>
+			  	<f:facet name = "header">Actions</f:facet>    			
+				<h:link value="Details" outcome="faces/account_detail">
+	            	<f:param name="id" value="#{acct.accountnumber}" />
+	            </h:link>
+			</h:column>
+		</h:dataTable>
+	</h:panelGrid>
 </body>
 </html>

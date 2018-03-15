@@ -1,4 +1,4 @@
-package edu.mum.cs545;
+package cs545.bank.bean;
 
 import java.io.Serializable;
 

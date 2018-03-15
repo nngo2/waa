@@ -8,41 +8,65 @@
 	<description>Lab8</description>
 
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source> 
+		<maven.compiler.target>1.7</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>		
 	</properties>
-
+	
 	<dependencies>
-<!-- 	
+	
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>	
+	
+<!-- 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+ -->			
+
+<!-- Following threes for Glashfish 
+
 		<dependency>
 	    	<groupId>com.sun.faces</groupId>
 	    	<artifactId>jsf-api</artifactId>
 	    	<version>2.2.14</version>
 	    	<scope>provided</scope>
     	</dependency>
- -->
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.2.14</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.sun.faces</groupId>
-		    <artifactId>jsf-impl</artifactId>
-		    <version>2.2.16</version>
-		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<version>1.2</version>
 		    <scope>provided</scope>
 		</dependency>
+-->		
+
+<!-- Following threes for Tomcat EE 
+
+		<dependency>
+		    <groupId>org.jboss.weld.servlet</groupId>
+		    <artifactId>weld-servlet-shaded</artifactId>
+		    <version>3.0.3.Final</version>
+		</dependency> 
+
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.14</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.sun.faces</groupId>
+		    <artifactId>jsf-impl</artifactId>
+		    <version>2.2.16</version>
+		</dependency>
+-->
 	</dependencies>
 </project>
