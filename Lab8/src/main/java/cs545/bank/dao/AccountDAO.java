@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.*;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Model;
+import javax.inject.Named;
 
 import cs545.bank.domain.Account;
 
-/*@Model
-@ApplicationScoped*/
+@Named
+@ApplicationScoped
 public class AccountDAO implements IAccountDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	

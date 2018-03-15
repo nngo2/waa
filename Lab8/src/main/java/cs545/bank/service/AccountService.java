@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cs545.bank.dao.AccountDAO;
 import cs545.bank.dao.IAccountDAO;
 import cs545.bank.domain.Account;
 import cs545.bank.domain.Customer;
@@ -26,17 +24,17 @@ public class AccountService implements IAccountService, Serializable {
 
 	public AccountService() {
 		super();
-		this.accountDAO = new AccountDAO();
-		currencyConverter = new CurrencyConverter();
-		jmsSender = new JMSSender();
+//		this.accountDAO = new AccountDAO();
+//		currencyConverter = new CurrencyConverter();
+//		jmsSender = new JMSSender();
 	}
 
-/*	@Inject
+	@Inject
 	public AccountService(IAccountDAO accountDAO) {
 		this.accountDAO = accountDAO;
 		currencyConverter = new CurrencyConverter();
 		jmsSender = new JMSSender();
-	}*/
+	}
 
 	public Account createAccount(long accountNumber, String customerName) {
 		Account account = new Account(accountNumber);
