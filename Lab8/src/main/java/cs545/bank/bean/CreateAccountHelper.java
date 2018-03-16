@@ -15,18 +15,18 @@ public class CreateAccountHelper {
 	
 	public String create(CreateAccountBean acct) {
 		acct.setMessage("");
-		if (acct.getDeposit()> 0 && acct.getAcctNumber() > 0) {
+		//if (acct.getDeposit()> 0 && acct.getAcctNumber() > 0) {
 			if (!acct.isAcctCreated()) {
 				accountService.createAccount(acct.getAcctNumber(), acct.getCustomer());
 				acct.setAcctCreated(true);
 			}
-			accountService.deposit(acct.getAcctNumber(), acct.getDeposit());
+			accountService.deposit(acct.getAcctNumber(), acct.getDeposit() + acct.getPromotionCode());
 			Account newAcct = accountService.getAccount(acct.getAcctNumber());
 			acct.setBalance(newAcct.getBalance());			
 			return "success";
-		} else {
-			acct.setMessage("Account number/deposit amount is not valid (must be greater than zero)");
-			return "error";			
-		}
+		//} else {
+		//	acct.setMessage("Account number/deposit amount is not valid (must be greater than zero)");
+		//	return "error";			
+		//}
 	}	
 }

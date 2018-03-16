@@ -23,6 +23,8 @@ public class CreateAccountBean implements Serializable{
 	
 	private boolean isAcctCreated;
 	
+	private int promotionCode;
+	
 	public String getMessage() {
 		return message;
 	}
@@ -69,6 +71,14 @@ public class CreateAccountBean implements Serializable{
 
 	public void setAcctCreated(boolean isAcctCreated) {
 		this.isAcctCreated = isAcctCreated;
+	}
+
+	public int getPromotionCode() {
+		return promotionCode;
+	}
+
+	public void setPromotionCode(int promotionCode) {
+		this.promotionCode = promotionCode;
 	}
 	
 }
